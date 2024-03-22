@@ -9,13 +9,11 @@ const addHospital=(async (req,res)=>{
     const val=[values.city,values.hName,values.hSpecialization,values.hContact,values.hEmail,values.hAddress,values.hUrl]
     try{
         pool.query(query,val,(err,result)=>{
-            console.log("HI")
+            
             if(err){
                 return res.status(500).json({'error':'error while in database'})
             }
-            else{
-                console.log(result)
-            }
+            
         })
         return res.status(201).json({'message':'Data added'})
 
