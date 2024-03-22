@@ -1,6 +1,7 @@
 const express=require('express')
 const router = require('./routes/hospitalRoute')
 const {showStatus} = require('./models/dbConnection')
+const bodyParser = require('body-parser')
 const app=express()
 require('dotenv').config() 
 
@@ -12,8 +13,12 @@ app.get('/',((req,res)=>{
     "/search/speciality/?specialization=<specialization>":"This endpoint is for getting search result of specialization."
 })
 }))
+
+app.use(bodyParser.urlencoded({extended:true}))
 app.use('/',require('./routes/hospitalRoute'))
 app.use('/search',require('./routes/searchRoute'))
+app.use('/admin',require('./routes/postRoutes'))
+app.use('/db',require('./routes/guiRoutes'))
 
 app.listen(process.env.PORT,()=>{
     console.log("Server running on: ",process.env.PORT)
