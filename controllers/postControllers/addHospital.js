@@ -15,6 +15,9 @@ const addHospital=(async (req,res)=>{
                 console.log(err)
                 return res.status(500).json({'error':'error while in database'})
             }
+            else{
+                console.log("No error: ",result)
+            }
             
         })
         console.log("after....")
