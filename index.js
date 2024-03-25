@@ -3,10 +3,12 @@ const router = require('./routes/hospitalRoute')
 const {showStatus} = require('./models/dbConnection')
 const bodyParser = require('body-parser')
 const app=express()
+const cors=require('cors')
 require('dotenv').config() 
 
 
 showStatus()
+app.use(cors())
 app.get('/',((req,res)=>{
     res.json({"/hospital?city=<cityname>&speciality=<specialization>":"For getting results of hospital on basis of city and search. You can also use any either of it",
     "/search/city?name=<cityname>":"This endpoint is to give search results of all cities in search bar",
